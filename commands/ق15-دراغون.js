@@ -1,4 +1,5 @@
-import { createCanvas } from 'canvas';
+import { createCanvas } from '@napi-rs/canvas';
+
 export default {
     name: 'تصميم2',
     aliases: ['dragon', 'دراغون', 'تنين'],
