@@ -1,4 +1,4 @@
-import { createCanvas } from 'canvas';
+import { createCanvas } from '@napi-rs/canvas';
 
 export default {
     name: 'تصميم1',
@@ -50,7 +50,6 @@ export default {
                 ctxCanvas.closePath();
                 
                 const currentAngle = (i * (360 / totalBeams));
-                // ألوان متدرجة من الأحمر/البرتقالي إلى البنفسجي/الأزرق
                 const hue = (currentAngle + 180) % 360;
                 ctxCanvas.fillStyle = `hsl(${hue}, 90%, 60%)`;
                 ctxCanvas.globalAlpha = 0.3 + (Math.sin(i * 0.3) * 0.1);
@@ -88,7 +87,6 @@ export default {
                     { x: endX, y: endY }
                 ];
 
-                // إضافة تموج عشوائي للبرق
                 for (let i = 1; i < points.length - 1; i++) {
                     points[i].x += (Math.random() - 0.5) * 30;
                     points[i].y += (Math.random() - 0.5) * 10;
@@ -104,7 +102,6 @@ export default {
                 ctxCanvas.lineTo(points[points.length - 1].x, points[points.length - 1].y);
                 ctxCanvas.stroke();
 
-                // إضافة فروع للبرق
                 const branches = [
                     [points[3], points[4]],
                     [points[5], points[6]]
@@ -134,11 +131,9 @@ export default {
             ctxCanvas.save();
             ctxCanvas.translate(size / 2, size / 2);
             
-            // ظل الانفجار
             ctxCanvas.shadowColor = 'rgba(255, 200, 0, 0.5)';
             ctxCanvas.shadowBlur = 50;
             
-            // الانفجار الخارجي (جولة مدببة)
             ctxCanvas.fillStyle = '#FFFFFF';
             ctxCanvas.strokeStyle = '#1A1A1A';
             ctxCanvas.lineWidth = 15;
@@ -160,7 +155,6 @@ export default {
             ctxCanvas.fill();
             ctxCanvas.stroke();
 
-            // توهج داخلي للانفجار
             const innerGlow = ctxCanvas.createRadialGradient(0, 0, 50, 0, 0, innerRadius);
             innerGlow.addColorStop(0, 'rgba(255, 255, 100, 0.3)');
             innerGlow.addColorStop(1, 'rgba(255, 255, 100, 0)');
@@ -178,7 +172,6 @@ export default {
             const textX = size / 2;
             const textY = size / 2;
 
-            // تحديد حجم الخط حسب طول النص
             let fontSize = 110;
             if (text.length > 8) fontSize = 90;
             if (text.length > 12) fontSize = 75;
@@ -194,11 +187,11 @@ export default {
 
             // ب) التدرج اللوني للنص الرئيسي (ناري متوهج)
             const textGradient = ctxCanvas.createLinearGradient(textX, textY - 60, textX, textY + 60);
-            textGradient.addColorStop(0, '#FFF8E1');   // أبيض مصفر
-            textGradient.addColorStop(0.2, '#FFD700'); // ذهبي
-            textGradient.addColorStop(0.5, '#FF6B00'); // برتقالي
-            textGradient.addColorStop(0.8, '#FF1744'); // أحمر ناري
-            textGradient.addColorStop(1, '#D50000');   // أحمر غامق
+            textGradient.addColorStop(0, '#FFF8E1');
+            textGradient.addColorStop(0.2, '#FFD700');
+            textGradient.addColorStop(0.5, '#FF6B00');
+            textGradient.addColorStop(0.8, '#FF1744');
+            textGradient.addColorStop(1, '#D50000');
 
             ctxCanvas.shadowColor = 'rgba(255, 200, 0, 0.3)';
             ctxCanvas.shadowBlur = 20;
@@ -233,7 +226,6 @@ export default {
             ctxCanvas.lineWidth = 8;
             ctxCanvas.strokeRect(20, 20, size - 40, size - 40);
 
-            // زوايا مدببة في الإطار
             const cornerSize = 40;
             const corners = [
                 [20, 20],
