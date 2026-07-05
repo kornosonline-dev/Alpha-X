@@ -1,0 +1,6 @@
+node_modules/
+session/
+auth/
+.env
+temp/
+cache/
